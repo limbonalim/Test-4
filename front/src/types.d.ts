@@ -15,4 +15,8 @@ export interface IComment {
   content: string;
 }
 
-export type ICommentPost = Omit<IComment, 'id'>
+export interface ICommentPost {
+  author: string | null;
+  content: string;
+  newsId: number;
+}

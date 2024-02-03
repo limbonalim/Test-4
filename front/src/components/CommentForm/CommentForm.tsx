@@ -1,8 +1,9 @@
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField, Typography } from '@mui/material';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useAppDispatch } from '../../app/hooks.ts';
+import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
 import { getComments, postComments } from '../../store/comment/commentThunks.ts';
 import { ICommentPost } from '../../types';
+import { selectCurrentNews } from '../../store/comment/commentSlice.ts';
 
 interface ICommentForm {
   author: string;
@@ -15,6 +16,7 @@ const CommentForm = () => {
     content: ''
   });
   const dispatch = useAppDispatch();
+  const news = useAppSelector(selectCurrentNews)
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
@@ -29,19 +31,25 @@ const CommentForm = () => {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const postData: ICommentPost = {
-      author: comment.author ? comment.author : null,
-      content: comment.content,
-    };
-    await dispatch(postComments(postData));
-    await dispatch(getComments());
+    if (news) {
+      const postData: ICommentPost = {
+        author: comment.author ? comment.author : null,
+        content: comment.content,
+        newsId: news.id
+      };
+      await dispatch(postComments(postData));
+      await dispatch(getComments());
+    }
+
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid container item>
+      <Grid container item direction='column' spacing={2}>
+        <Grid item> <Typography variant="h4">Add Comments:</Typography></Grid>
         <Grid item>
           <TextField
+            sx={{width: '50%'}}
             label="Name"
             name="author"
             onChange={onChange}
@@ -50,6 +58,7 @@ const CommentForm = () => {
         </Grid>
         <Grid item>
           <TextField
+            sx={{width: '70%'}}
             onChange={onChange}
             value={comment.content}
             multiline

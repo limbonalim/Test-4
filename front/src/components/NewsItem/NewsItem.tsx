@@ -36,16 +36,18 @@ const MemoNewsItem: React.FC<INews> = React.memo(function News({id, title, image
           alt={title}
         />
       </Grid>
-      <Grid item container>
+      <Grid item container direction='column'>
         <Grid item>
           <Typography variant="h4">{title}</Typography>
         </Grid>
         <Grid item container>
-          <Grid item>
-            <Typography variant="body1">{dateNews.getFormatDate()}</Typography>
+          <Grid item container spacing={2} sx={{
+            alignItems: 'center'
+          }}>
+            <Grid item><Typography variant="body1">{dateNews.getFormatDate()}</Typography></Grid>
+            <Grid item><Button onClick={handleNavigate}>Read Full Post</Button></Grid>
+            <Grid item><Button onClick={handleDelete} color='error'>Delete</Button></Grid>
           </Grid>
-          <Button onClick={handleNavigate}>Read Full Post</Button>
-          <Button onClick={handleDelete}>Delete</Button>
         </Grid>
       </Grid>
     </Grid>

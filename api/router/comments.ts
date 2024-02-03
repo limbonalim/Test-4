@@ -32,7 +32,7 @@ commentsRouter.get('/', async (req, res, next) => {
 commentsRouter.post('/', async (req, res, next) => {
   try {
     const postData = {
-      newsId: parseInt(req.body.news),
+      newsId: parseInt(req.body.newsId),
       author: req.body.author? req.body.author : null,
       content: req.body.content
     };
