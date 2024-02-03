@@ -9,6 +9,7 @@ const port = 8000;
 
 app.use(json());
 app.use(cors());
+app.use(express.static('public'));
 
 app.use('/news', newsRouter);
 app.use('/comments', commentsRouter);
