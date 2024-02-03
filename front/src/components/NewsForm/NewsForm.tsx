@@ -1,14 +1,14 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
-import {Button, Grid, TextField} from "@mui/material";
-import FileInput from "../UI/FileInput/FileInput.tsx";
-import {useAppDispatch} from "../../app/hooks.ts";
-import {getNews, postNews} from "../../store/news/newsThunks.ts";
-import {useNavigate} from "react-router-dom";
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { Button, Grid, TextField } from '@mui/material';
+import FileInput from '../UI/FileInput/FileInput.tsx';
+import { useAppDispatch } from '../../app/hooks.ts';
+import { getNews, postNews } from '../../store/news/newsThunks.ts';
+import { useNavigate } from 'react-router-dom';
 
 export interface IFormNews {
   title: string;
   content: string;
-  image: File | null
+  image: File | null;
 }
 
 const NewsForm = () => {
@@ -44,14 +44,14 @@ const NewsForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid container item direction='column' spacing={2}>
+      <Grid container item direction="column" spacing={2}>
         <Grid item>
           <TextField
             sx={{
               width: '50%'
             }}
-            label='Title'
-            name='title'
+            label="Title"
+            name="title"
             onChange={onChange}
             value={news.title}
           />
@@ -78,7 +78,7 @@ const NewsForm = () => {
           />
         </Grid>
         <Grid item>
-          <Button type='submit'>Add</Button>
+          <Button type="submit">Add</Button>
         </Grid>
       </Grid>
     </form>

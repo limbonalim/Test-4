@@ -1,8 +1,8 @@
-import {Button, Grid, TextField} from "@mui/material";
-import {ChangeEvent, FormEvent, useState} from "react";
-import {useAppDispatch} from "../../app/hooks.ts";
-import {getComments, postComments} from "../../store/comment/commentThunks.ts";
-import {ICommentPost} from "../../types";
+import { Button, Grid, TextField } from '@mui/material';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { useAppDispatch } from '../../app/hooks.ts';
+import { getComments, postComments } from '../../store/comment/commentThunks.ts';
+import { ICommentPost } from '../../types';
 
 interface ICommentForm {
   author: string;
@@ -24,26 +24,26 @@ const CommentForm = () => {
         ...prevState,
         [name]: value
       }
-    ))
+    ));
   };
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const postData: ICommentPost = {
-      author: comment.author? comment.author : null,
+      author: comment.author ? comment.author : null,
       content: comment.content,
-    }
+    };
     await dispatch(postComments(postData));
     await dispatch(getComments());
-  }
+  };
 
   return (
     <form onSubmit={onSubmit}>
       <Grid container item>
         <Grid item>
           <TextField
-            label='Name'
-            name='author'
+            label="Name"
+            name="author"
             onChange={onChange}
             value={comment.author}
           />
@@ -60,7 +60,7 @@ const CommentForm = () => {
           />
         </Grid>
         <Grid item>
-          <Button type='submit'>Add</Button>
+          <Button type="submit">Add</Button>
         </Grid>
       </Grid>
     </form>

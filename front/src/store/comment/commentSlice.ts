@@ -1,14 +1,13 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {RootState} from "../../app/store.ts";
-import {getComments} from "./commentThunks.ts";
-import {IComment} from "../../types";
-
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store.ts';
+import { getComments } from './commentThunks.ts';
+import { IComment } from '../../types';
 
 
 interface ICommentSlice {
   comments: IComment[];
   currentNewsId: number | null;
-  isLoading: boolean
+  isLoading: boolean;
 }
 
 const initialState: ICommentSlice = {

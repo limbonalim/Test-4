@@ -1,6 +1,5 @@
-import {Box, Container} from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
-
 
 
 const Toolbar = () => {
@@ -8,7 +7,7 @@ const Toolbar = () => {
     <>
       <Box>
         <Container sx={{paddingBottom: 2}}>
-          <Link to='/'>News</Link>
+          <Link to="/">News</Link>
         </Container>
       </Box>
     </>

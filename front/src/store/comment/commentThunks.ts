@@ -1,9 +1,9 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import axiosApi from "../../axiosApi.ts";
-import {IComment, ICommentPost} from "../../types";
-import {RootState} from "../../app/store.ts";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axiosApi from '../../axiosApi.ts';
+import { IComment, ICommentPost } from '../../types';
+import { RootState } from '../../app/store.ts';
 
-export const getComments = createAsyncThunk<IComment[], void, {state: RootState}>(
+export const getComments = createAsyncThunk<IComment[], void, { state: RootState }>(
   'comment/fetchComments',
   async (_, thunkAPI) => {
     const res = await axiosApi.get<IComment[]>(`/comments?news_id=${thunkAPI.getState().comment.currentNewsId}`);

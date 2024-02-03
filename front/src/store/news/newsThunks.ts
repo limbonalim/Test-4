@@ -1,7 +1,7 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../../axiosApi.ts';
-import {IFullNews, INews} from "../../types";
-import {IFormNews} from "../../components/NewsForm/NewsForm.tsx";
+import { IFullNews, INews } from '../../types';
+import { IFormNews } from '../../components/NewsForm/NewsForm.tsx';
 
 export const getNews = createAsyncThunk<INews[], void>(
   'news/fetchNews',
@@ -15,9 +15,9 @@ export const getOneNews = createAsyncThunk<IFullNews, number>(
   'news/fetchOneNews',
   async (id) => {
     const response = await axiosApi.get<IFullNews>(`/news/${id}`);
-    return response.data
+    return response.data;
   }
-)
+);
 
 export const postNews = createAsyncThunk<void, IFormNews>(
   'news/postNews',
@@ -31,4 +31,4 @@ export const deleteNews = createAsyncThunk<void, number>(
   async (id) => {
     await axiosApi.delete(`/news/${id}`);
   }
-)
+);

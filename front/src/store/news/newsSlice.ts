@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store.ts';
-import {getNews, getOneNews} from './newsThunks.ts';
-import {IFullNews, INews} from "../../types";
+import { getNews, getOneNews } from './newsThunks.ts';
+import { IFullNews, INews } from '../../types';
 
 
 interface INewsSlice {
@@ -21,9 +21,7 @@ const initialState: INewsSlice = {
 const newsSlice = createSlice({
   name: 'news',
   initialState,
-  reducers: {
-
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getNews.pending, (state) => {
       state.isLoading = true;
@@ -42,7 +40,7 @@ const newsSlice = createSlice({
       state.currentNews = news;
     }).addCase(getOneNews.rejected, (state) => {
       state.isNewsLoading = false;
-    })
+    });
   }
 });
 
