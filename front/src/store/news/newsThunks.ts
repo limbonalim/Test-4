@@ -22,7 +22,13 @@ export const getOneNews = createAsyncThunk<IFullNews, number>(
 export const postNews = createAsyncThunk<void, IFormNews>(
   'news/postNews',
   async (data) => {
-    await axiosApi.post(`/news/`, data);
+    const postData = new FormData();
+    postData.append('content', data.content);
+    postData.append('title', data.title);
+    if (data.image) {
+      postData.append('image', data.image);
+    }
+    await axiosApi.post(`/news/`, postData);
   }
 );
 
