@@ -80,3 +80,10 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2024-02-03 12:25:27
+alter table comments
+    drop foreign key comments_news_id_fk;
+
+alter table comments
+    add constraint comments_news_id_fk
+        foreign key (news_id) references news (id)
+            on delete cascade;
