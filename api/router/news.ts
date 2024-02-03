@@ -6,7 +6,7 @@ import {NewsPost} from '../types';
 
 const newsRouter = Router();
 
-const queryGetAll = 'SELECT * FROM news';
+const queryGetAll = 'SELECT id, title, image, date FROM news';
 const querySelectById = 'SELECT * FROM news WHERE id = ?';
 const queryPost = 'INSERT INTO news (title, content, image) VALUES (?, ?, ?)';
 const queryDelete = 'DELETE FROM news WHERE id = ?';
