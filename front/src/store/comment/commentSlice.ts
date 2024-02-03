@@ -35,6 +35,7 @@ const commentSlice = createSlice({
       state.isLoading = false;
     }).addCase(getComments.rejected, (state) => {
       state.isLoading = false;
+      state.comments = [];
     });
   }
 

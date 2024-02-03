@@ -6,8 +6,12 @@ import { RootState } from '../../app/store.ts';
 export const getComments = createAsyncThunk<IComment[], void, { state: RootState }>(
   'comment/fetchComments',
   async (_, thunkAPI) => {
-    const res = await axiosApi.get<IComment[]>(`/comments?news_id=${thunkAPI.getState().comment.currentNewsId}`);
-    return res.data;
+    const id = thunkAPI.getState().news.currentNews?.id;
+    if (id) {
+      const res = await axiosApi.get<IComment[]>(`/comments?news_id=${id}`);
+      return res.data;
+    }
+    return [];
   }
 );
 

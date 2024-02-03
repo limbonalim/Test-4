@@ -54,6 +54,7 @@ const NewsForm = () => {
             name="title"
             onChange={onChange}
             value={news.title}
+            required
           />
         </Grid>
         <Grid item>

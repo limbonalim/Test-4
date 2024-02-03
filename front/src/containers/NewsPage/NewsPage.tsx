@@ -10,6 +10,7 @@ import FormatDate from '../../components/UI/FormatDate/FormatDate.ts';
 import { useEffect } from 'react';
 import { getOneNews } from '../../store/news/newsThunks.ts';
 import { useParams } from 'react-router-dom';
+import {getComments} from "../../store/comment/commentThunks.ts";
 
 
 const NewsPage = () => {
@@ -21,10 +22,16 @@ const NewsPage = () => {
 
   const image = news?.image ? API_URL + '/' + news.image : noImage;
 
-  useEffect(() => {
+  const getNews = async () => {
     if (id) {
-      dispatch(getOneNews(parseInt(id)));
+      await dispatch(getOneNews(parseInt(id)));
+      await dispatch(getComments());
     }
+  };
+
+
+  useEffect(() => {
+    void getNews();
   }, []);
 
   return news && (

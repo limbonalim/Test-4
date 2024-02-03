@@ -12,12 +12,16 @@ const CommentItem: React.FC<IComment> = ({id, content, author}) => {
   };
 
   return (
-    <Grid item container>
-      <Grid item>
-        <Typography>{author ? author : 'Anonimus'}</Typography>
-        <Typography>{content}</Typography>
+    <Grid item container sx={{border: '1px solid black', borderRadius: 5, padding: 1, marginTop: 1}}>
+      <Grid item container spacing={1}>
+        <Grid item>
+          <Typography>{author ? author : 'Anonimus'}:</Typography>
+        </Grid>
+        <Grid item>
+          <Typography>{content}</Typography>
+        </Grid>
       </Grid>
-      <Grid item><Button onClick={handleDelete}>Delete</Button></Grid>
+      <Grid item><Button onClick={handleDelete} color='error'>Delete</Button></Grid>
     </Grid>
   );
 };
